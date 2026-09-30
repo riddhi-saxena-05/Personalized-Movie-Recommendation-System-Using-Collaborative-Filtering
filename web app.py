@@ -14,7 +14,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Set page configuration
 st.set_page_config(
-    page_title="Movie Recommendation System",
+    page_title="CineMatch",
     page_icon="🎬",
     layout="wide"
 )

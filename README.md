@@ -1,38 +1,60 @@
-# Movie-Recommendation-System-using-Machine-Learning-with-Python
-This is a movie recommendation system based on collaborative filtering technique. The system is deployed on Streamlit and you can access it via this link.
+# Personalized Movie Recommendation System
 
-## Table of Contents
+A machine learning-powered movie recommendation system deployed with Streamlit. The system recommends movies based on content similarity and metadata (genres, keywords, cast, director, and overview) using TF-IDF vectorization and Cosine Similarity.
 
-##### Getting Started
-##### Usage
-##### Model Overview
-##### Data
-##### Credits
+## 📌 Table of Contents
+- [Features](#-features)
+- [Getting Started](#-getting-started)
+- [Usage](#-usage)
+- [Model Overview](#-model-overview)
+- [Dataset](#-dataset)
 
+---
 
+## ✨ Features
+- 🔍 **Interactive Movie Search & Autocomplete**: Select or search for any movie in the database.
+- 🎯 **Accurate Recommendations**: Uses TF-IDF feature extraction & Cosine Similarity across genres, directors, cast, taglines, and descriptions.
+- 📊 **Rich Movie Details**: Displays overview, director, cast, genres, and ratings for recommended movies.
+- ⚡ **Streamlit UI**: Clean, responsive interface for instant exploration.
 
+---
 
-## Getting Started
-To use this recommendation system on your local machine, follow these instructions:
+## 🚀 Getting Started
 
-Clone the repository to your local machine using the command: git clone https://github.com/Boussairi/Movie-Recommendation-System-using-Machine-Learning-with-Python.git
-Install the required packages using the command: pip install -r requirements.txt
-Run the Streamlit app using the command: streamlit run web app.py
-Access the app via your web browser at the provided link.
+To run this recommendation system on your local machine, follow these steps:
 
-## Usage
-When you access the app, you will be presented with a form to select a movie. After selecting a movie, the app will recommend similar movies based on other users' ratings, genres, cast, director and overview.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/riddhi-saxena-05/Personalized-Movie-Recommendation-System-Using-Collaborative-Filtering.git
+   cd Personalized-Movie-Recommendation-System-Using-Collaborative-Filtering
+   ```
 
-## Model Overview
-The recommendation system is based on collaborative filtering technique. It finds similar users based on their rating history and recommends movies to the active user based on the rating history of similar users. The similarity between users is calculated using cosine similarity measure.
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Data
-The data used for this recommendation system is a subset of the MovieLens dataset. The dataset contains over 100,000 ratings of approximately 8,000 movies from 600 users. The data is preprocessed and cleaned before being used in the model.
+3. **Run the Streamlit application:**
+   ```bash
+   streamlit run "web app.py"
+   ```
 
-## Credits
-This project is inspired by the tutorial from Data Professor on YouTube. The code is modified to fit my personal preferences and to deploy the model on Streamlit.
+4. Open your browser at `http://localhost:8501`.
 
+---
 
+## 📖 Usage
+1. Choose between **Autocomplete selection** or **Text Search**.
+2. Pick or enter your favorite movie title.
+3. Adjust the number of recommendations you want.
+4. Click **Get Recommendations** to discover similar movies with full details!
 
+---
 
-![image](https://user-images.githubusercontent.com/103688769/229285964-6843f406-69da-4615-a125-1db94cf1868c.png)
+## 🧠 Model Overview
+The recommendation engine processes multiple textual and metadata features from each movie (`genres`, `keywords`, `overview`, `cast`, `director`, `tagline`, `production_companies`, and `spoken_languages`). It computes feature vectors using `TfidfVectorizer` and measures cosine distance across all movies to find the highest similarity matches.
+
+---
+
+## 📁 Dataset
+The project utilizes the TMDB / MovieLens dataset containing movie metadata, ratings, cast, and overview information.

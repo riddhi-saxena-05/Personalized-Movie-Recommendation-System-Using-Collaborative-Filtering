@@ -205,16 +205,19 @@ def main():
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        margin: 0 auto 2rem auto !important;
+        margin: 0 auto 1.5rem auto !important;
+        padding: 0 !important;
         width: 100% !important;
+        gap: 4px !important;
     }
     .hero-title {
-        font-size: 2.35rem;
-        font-weight: 800;
-        color: #202044;
-        letter-spacing: -0.025em;
-        margin: 0 0 0.4rem 0 !important;
-        line-height: 1.2;
+        font-size: 2.35rem !important;
+        font-weight: 800 !important;
+        color: #202044 !important;
+        letter-spacing: -0.025em !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
         text-align: center !important;
         width: 100% !important;
     }
@@ -225,11 +228,12 @@ def main():
         -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
-        font-size: 1.05rem;
-        color: #585779;
-        margin: 0 auto !important;
-        line-height: 1.5;
-        font-weight: 400;
+        font-size: 1rem !important;
+        color: #585779 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
+        font-weight: 400 !important;
         text-align: center !important;
         width: 100% !important;
         display: block !important;

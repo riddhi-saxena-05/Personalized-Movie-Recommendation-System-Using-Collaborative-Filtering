@@ -193,7 +193,7 @@ def main():
 
     /* Main Container Padding */
     .block-container {
-        padding-top: 2rem !important;
+        padding-top: 3.5rem !important;
         padding-bottom: 3rem !important;
         max-width: 1120px !important;
     }
@@ -205,10 +205,10 @@ def main():
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        margin: 0 auto 1.5rem auto !important;
-        padding: 0 !important;
+        margin: 0 auto 2rem auto !important;
+        padding: 0.5rem 0 0 0 !important;
         width: 100% !important;
-        gap: 4px !important;
+        gap: 6px !important;
     }
     .hero-title {
         font-size: 2.35rem !important;
@@ -216,10 +216,11 @@ def main():
         color: #202044 !important;
         letter-spacing: -0.025em !important;
         margin: 0 !important;
-        padding: 0 !important;
-        line-height: 1.1 !important;
+        padding: 0 0 2px 0 !important;
+        line-height: 1.25 !important;
         text-align: center !important;
         width: 100% !important;
+        overflow: visible !important;
     }
     .hero-title .brand-highlight {
         color: #5B4BDB;
@@ -228,11 +229,11 @@ def main():
         -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
-        font-size: 1rem !important;
+        font-size: 1.02rem !important;
         color: #585779 !important;
         margin: 0 !important;
         padding: 0 !important;
-        line-height: 1.1 !important;
+        line-height: 1.3 !important;
         font-weight: 400 !important;
         text-align: center !important;
         width: 100% !important;
@@ -360,11 +361,11 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
-    # Hero Banner (Centered Title and Tagline with tight vertical spacing)
+    # Hero Banner (Centered Title and Tagline)
     st.markdown("""
-    <div class="hero-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 0 auto 1.5rem auto; padding: 0;">
-        <h1 class="hero-title" style="font-size: 2.35rem; font-weight: 800; color: #202044; letter-spacing: -0.025em; margin: 0 !important; padding: 0 !important; line-height: 1.15 !important; text-align: center;">🎬 <span class="brand-highlight">CineMatch</span></h1>
-        <p class="hero-subtitle" style="font-size: 1.02rem; color: #585779; margin: 2px 0 0 0 !important; padding: 0 !important; line-height: 1.2 !important; font-weight: 400; text-align: center;">Find your next movie match</p>
+    <div class="hero-container">
+        <h1 class="hero-title">🎬 <span class="brand-highlight">CineMatch</span></h1>
+        <p class="hero-subtitle">Find your next movie match</p>
     </div>
     """, unsafe_allow_html=True)
 

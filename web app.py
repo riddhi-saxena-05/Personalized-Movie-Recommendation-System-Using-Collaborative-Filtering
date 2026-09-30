@@ -7,7 +7,6 @@ import os
 import difflib
 import pickle
 import streamlit as st
-import streamlit.components.v1 as components
 import numpy as np 
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -388,104 +387,7 @@ def main():
             default_index = all_titles.index("The Avengers") if "The Avengers" in all_titles else 0
             movie_input = st.selectbox("Choose a movie:", options=all_titles, index=default_index)
         elif search_mode == "Type movie name":
-            movie_input = st.text_input("Enter your favorite movie name:", placeholder="🔍 Enter movie name")
-
-            # Direct DOM Microphone button injection into movie search input
-            st.markdown("""
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'></svg>" style="display:none;" onerror="
-            (function(){
-                function attachMic() {
-                    const inputWrap = document.querySelector('div[data-testid=\\'stTextInput\\'] div[data-baseweb=\\'input\\']');
-                    if (!inputWrap) return;
-                    
-                    inputWrap.style.position = 'relative';
-                    const input = inputWrap.querySelector('input');
-                    if (!input) return;
-                    input.style.paddingRight = '52px';
-                    
-                    if (inputWrap.querySelector('.cinematch-mic-btn')) return;
-                    
-                    const btn = document.createElement('button');
-                    btn.className = 'cinematch-mic-btn';
-                    btn.type = 'button';
-                    btn.innerHTML = '🎙️';
-                    btn.title = 'Click to speak movie name';
-                    btn.style.cssText = 'position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.25rem;padding:4px;border-radius:8px;z-index:10;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;';
-                    
-                    const badge = document.createElement('span');
-                    badge.className = 'cinematch-mic-badge';
-                    badge.style.cssText = 'position:absolute;right:44px;top:50%;transform:translateY(-50%);font-size:0.78rem;font-weight:600;color:#5B4BDB;background:#EEECFC;padding:2px 8px;border-radius:6px;display:none;white-space:nowrap;z-index:9;';
-                    inputWrap.appendChild(badge);
-                    
-                    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-                    
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        if (!SpeechRec) {
-                            badge.textContent = 'Voice unavailable';
-                            badge.style.display = 'block';
-                            setTimeout(() => { badge.style.display = 'none'; }, 2500);
-                            return;
-                        }
-                        
-                        try {
-                            const rec = new SpeechRec();
-                            rec.lang = 'en-US';
-                            rec.interimResults = false;
-                            rec.maxAlternatives = 1;
-                            
-                            badge.textContent = 'Listening...';
-                            badge.style.display = 'block';
-                            btn.style.transform = 'translateY(-50%) scale(1.25)';
-                            btn.style.filter = 'drop-shadow(0 0 6px rgba(91,75,219,0.8))';
-                            
-                            rec.onstart = function() {
-                                badge.textContent = 'Listening...';
-                                badge.style.display = 'block';
-                            };
-                            
-                            rec.onresult = function(ev) {
-                                const text = ev.results && ev.results[0] && ev.results[0][0] ? ev.results[0][0].transcript : '';
-                                if (text) {
-                                    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                                    setter.call(input, text);
-                                    input.dispatchEvent(new Event('input', { bubbles: true }));
-                                    input.dispatchEvent(new Event('change', { bubbles: true }));
-                                    input.focus();
-                                }
-                                badge.textContent = 'Done!';
-                                setTimeout(() => { badge.style.display = 'none'; }, 1200);
-                            };
-                            
-                            rec.onerror = function(ev) {
-                                badge.textContent = ev.error === 'not-allowed' ? 'Mic blocked' : 'Try again';
-                                setTimeout(() => { badge.style.display = 'none'; }, 2000);
-                            };
-                            
-                            rec.onend = function() {
-                                btn.style.transform = 'translateY(-50%) scale(1)';
-                                btn.style.filter = 'none';
-                            };
-                            
-                            rec.start();
-                        } catch(err) {
-                            console.error(err);
-                            badge.textContent = 'Error';
-                            setTimeout(() => { badge.style.display = 'none'; }, 1500);
-                        }
-                    });
-                    
-                    inputWrap.appendChild(btn);
-                }
-                
-                attachMic();
-                const t = setInterval(attachMic, 250);
-                setTimeout(() => clearInterval(t), 8000);
-            })();
-            "/>
-            """, unsafe_allow_html=True)
+            movie_input = st.text_input("Enter your favorite movie name:", placeholder="e.g. Inception, Avatar, Spider-Man")
 
         # Genre Filter UI
         selected_genre = st.selectbox("🎭 Filter by Genre:", options=available_genres, index=0)

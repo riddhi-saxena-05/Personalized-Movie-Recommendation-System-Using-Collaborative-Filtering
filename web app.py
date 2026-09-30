@@ -180,9 +180,179 @@ def Movies_prediction(input_movie):
     return liste
 
 def main():
-    st.markdown("<h1 style='text-align: center; color: #E50914;'>🎬 MOVIES RECOMMENDATION SYSTEM</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: gray; font-size: 1.1em;'>Discover movies similar to your favorites using Machine Learning & Cosine Similarity</p>", unsafe_allow_html=True)
-    st.divider()
+    # Inject Custom CSS for Modern, Polished UI/UX
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    html, body, [class*="css"], .stApp {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #F7F7FC !important;
+        color: #202044 !important;
+    }
+
+    /* Main Container Padding */
+    .block-container {
+        padding-top: 2rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 1120px !important;
+    }
+
+    /* Hero Header */
+    .hero-container {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .hero-title {
+        font-size: 2.35rem;
+        font-weight: 800;
+        color: #202044;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.35rem;
+        line-height: 1.2;
+    }
+    .hero-title .brand-highlight {
+        color: #5B4BDB;
+        background: linear-gradient(135deg, #5B4BDB 0%, #8B7CF6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+        font-size: 1.05rem;
+        color: #585779;
+        max-width: 620px;
+        margin: 0 auto;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    /* Section & Label Styling */
+    .stSelectbox label, .stTextInput label, .stSlider label, .stRadio label {
+        color: #202044 !important;
+        font-weight: 600 !important;
+        font-size: 0.92rem !important;
+        letter-spacing: -0.01em;
+    }
+
+    /* Input Fields & Select Boxes */
+    div[data-baseweb="input"] > div,
+    div[data-baseweb="select"] > div {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E6E5F5 !important;
+        border-radius: 12px !important;
+        color: #202044 !important;
+        box-shadow: 0 2px 8px rgba(32, 32, 68, 0.03) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    div[data-baseweb="input"] > div:hover,
+    div[data-baseweb="select"] > div:hover {
+        border-color: #8B7CF6 !important;
+    }
+
+    div[data-baseweb="input"] > div:focus-within,
+    div[data-baseweb="select"] > div:focus-within {
+        border-color: #5B4BDB !important;
+        box-shadow: 0 0 0 3px rgba(91, 75, 219, 0.14) !important;
+    }
+
+    /* Radio Group Card */
+    div[data-testid="stRadio"] {
+        background-color: #FFFFFF;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid #E6E5F5;
+        box-shadow: 0 2px 8px rgba(32, 32, 68, 0.03);
+        margin-bottom: 12px;
+    }
+    div[data-testid="stRadio"] > div {
+        gap: 1.2rem;
+    }
+    div[data-testid="stRadio"] label span {
+        color: #202044 !important;
+        font-weight: 500 !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Slider Customization */
+    div[data-testid="stSlider"] {
+        background-color: #FFFFFF;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid #E6E5F5;
+        box-shadow: 0 2px 8px rgba(32, 32, 68, 0.03);
+    }
+    div[data-baseweb="slider"] div[role="slider"] {
+        background-color: #5B4BDB !important;
+        border-color: #5B4BDB !important;
+        box-shadow: 0 2px 6px rgba(91, 75, 219, 0.3) !important;
+    }
+
+    /* Buttons */
+    .stButton > button,
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #5B4BDB 0%, #4D3DCB 100%) !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        font-size: 0.98rem !important;
+        border-radius: 12px !important;
+        border: none !important;
+        padding: 0.65rem 1.3rem !important;
+        box-shadow: 0 4px 16px rgba(91, 75, 219, 0.32) !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        width: 100% !important;
+    }
+
+    .stButton > button:hover,
+    button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #4A3AC5 0%, #3F2EB8 100%) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 22px rgba(91, 75, 219, 0.42) !important;
+    }
+
+    .stButton > button:active,
+    button[kind="primary"]:active {
+        transform: translateY(0) !important;
+    }
+
+    /* Expander / Recommendation Result Cards */
+    div[data-testid="stExpander"] {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E6E5F5 !important;
+        border-radius: 14px !important;
+        box-shadow: 0 3px 12px rgba(32, 32, 68, 0.04) !important;
+        margin-bottom: 12px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    div[data-testid="stExpander"]:hover {
+        border-color: #8B7CF6 !important;
+        box-shadow: 0 6px 20px rgba(91, 75, 219, 0.08) !important;
+    }
+
+    div[data-testid="stExpander"] summary {
+        font-weight: 700 !important;
+        color: #202044 !important;
+        font-size: 1.02rem !important;
+        padding: 0.8rem 1rem !important;
+    }
+
+    /* Alerts and Feedback Banners */
+    div[data-testid="stAlert"] {
+        border-radius: 12px !important;
+        border: 1px solid #E6E5F5 !important;
+        box-shadow: 0 2px 8px rgba(32, 32, 68, 0.03) !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Hero Banner
+    st.markdown("""
+    <div class="hero-container">
+        <h1 class="hero-title">🎬 Movie <span class="brand-highlight">Recommendation</span> System</h1>
+        <p class="hero-subtitle">Discover personalized movie recommendations powered by Machine Learning and Cosine Similarity</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     try:
         with st.spinner("Loading dataset and initializing recommendation engine..."):
